@@ -13,7 +13,13 @@ const app = express();
 connectDB();
 const port = process.env.PORT || 5000;
 
-app.use(cors());
+const corsOptions = {
+  origin: 'https://bulk-email-tool-tau.vercel.app', 
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], 
+  allowedHeaders: ['Content-Type', 'Authorization'], 
+};
+app.use(cors(corsOptions));
+
 app.use(express.json());
 app.use(bodyParser.json());
 app.use('/api/auth', authRoutes);
