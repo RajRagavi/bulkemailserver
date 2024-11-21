@@ -23,6 +23,9 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.use(bodyParser.json());
 app.use('/api/auth', authRoutes);
+app.get("/", (req,res) => {
+  res.send("Server is Working")
+})
 
 // Use email routes
 app.use('/api', emailRoutes);
