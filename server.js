@@ -1,4 +1,3 @@
-// server.js
 const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
@@ -10,17 +9,23 @@ const emailRoutes = require('./routes/emailRoutes');
 dotenv.config();
 
 const app = express();
+
+// Connect to the database
 connectDB();
+
+// Set up port
 const port = process.env.PORT || 5000;
 
-app.use(cors());
-app.use(express.json());
-app.use(bodyParser.json());
-app.use('/api/auth', authRoutes);
+// Middleware
+app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
+app.use(express.json()); // Built-in middleware to parse JSON requests
+app.use(bodyParser.json()); // Additional middleware to parse JSON requests
 
-// Use email routes
+// Routes
+app.use('/api/auth', authRoutes);
 app.use('/api', emailRoutes);
 
+// Start server
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
 });
