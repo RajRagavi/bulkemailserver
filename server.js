@@ -16,8 +16,13 @@ connectDB();
 // Set up port
 const port = process.env.PORT || 5000;
 
-// Middleware
-app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
+// Middlewareapp.use(cors());
+const corsOptions = {
+  origin: 'https://bulk-email-tool-tau.vercel.app', 
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], 
+  allowedHeaders: ['Content-Type', 'Authorization'], 
+};
+app.use(cors(corsOptions));
 app.use(express.json()); // Built-in middleware to parse JSON requests
 app.use(bodyParser.json()); // Additional middleware to parse JSON requests
 
