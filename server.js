@@ -24,6 +24,9 @@ app.use(bodyParser.json()); // Additional middleware to parse JSON requests
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api', emailRoutes);
+app.get("/", (req,res) => {
+  res.send("Server is Working")
+})
 
 // Start server
 app.listen(port, () => {
